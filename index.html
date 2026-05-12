@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis XV Años - Sofía</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="[fonts.googleapis.com](https://fonts.googleapis.com)">
+    <link href="[fonts.googleapis.com](https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@300;400;500&display=swap)" rel="stylesheet">
+    
+    <style>
+        /* ============================================
+           VARIABLES Y RESET
+        ============================================ */
+        :root {
+            --color-primary: #d4a574;
+            --color-secondary: #8b7355;
+            --color-accent: #e8d4c4;
+            --color-dark: #2c2c2c;
+            --color-light: #faf8f5;
+            --color-white: #ffffff;
+            --font-elegant: 'Cormorant Garamond', serif;
+            --font-modern: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-modern);
+            background-color: var(--color-light);
+            color: var(--color-dark);
+            overflow-x: hidden;
+        }
+
+        /* ============================================
+           SECCIÓN HERO / PORTADA
+        ============================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--color-light) 0%, var(--color-accent) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.1) 0%, transparent 70%);
+            animation: shimmer 15s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(10%, 10%) rotate(5deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-decoration {
+            font-size: 3rem;
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-modern);
+            font-size: 0.9rem;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--color-secondary);
+            margin-bottom: 0.5rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hero-title {
+            font-family: var(--font-elegant);
+            font-size: clamp(3rem, 12vw, 6rem);
+            font-weight: 300;
+            color: var(--color-dark);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out 0.5s both;
+        }
+
+        .hero-name {
+            font-family: var(--font-elegant);
+            font-size: clamp(2.5rem, 10vw, 5rem);
+            font-weight: 500;
+            color: var(--color-primary);
+            font-style: italic;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.7s both;
+        }
+
+        .hero-date {
+            font-family: var(--font-modern);
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 0.2em;
+            color: var(--color-secondary);
+            animation: fadeInUp 1s ease-out 0.9s both;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator span {
+            display: block;
+            width: 2px;
+            height: 40px;
+            background: linear-gradient(to bottom, transparent, var(--color-primary));
+            margin: 0 auto 0.5rem;
+        }
+
+        .scroll-indicator p {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-secondary);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* ============================================
+           ANIMACIONES DE ENTRADA
+        ============================================ */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============================================
+           SECCIONES GENERALES
+        ============================================ */
+        section {
+            padding: 5rem 1.5rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: var(--font-elegant);
+            font-size: 2.5rem;
+            font-weight: 400;
+            text-align: center;
+            color: var(--color-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            font-family: var(--font-modern);
+            font-size: 0.8rem;
+            font-weight: 300;
+            text-align: center;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--color-secondary);
+            margin-bottom: 3rem;
+        }
+
+        .divider {
+            width: 60px;
+            height: 1px;
+            background: var(--color-primary);
+            margin: 0 auto 3rem;
+        }
+
+        /* ============================================
+           CONTADOR
+        ============================================ */
+        .countdown-section {
+            background: var(--color-white);
+            border-radius: 20px;
+            box-shadow: 0 10px 60px rgba(0, 0, 0, 0.05);
+            padding: 3rem 1.5rem;
+            max-width: 600px;      /* Igual que las demás secciones */
+            margin: 0 auto;        /* Centrado perfecto */
+            text-align: center;
+        }
+
+        .countdown-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            column-gap: 12px;        /* Separación REAL entre las columnas */
+            row-gap: 0;              /* Opcional, por si hay salto en móvil */
+            max-width: 350px;
+            margin: 0 auto;
+             justify-content: center;
+            justify-items: center;
+        }
+
+
+
+        .countdown-item {
+            text-align: center;
+            padding: 1rem 0.5rem;
+            background: var(--color-light);
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+            margin: 0 4px;
+        }
+
+        .countdown-item:hover {
+            transform: scale(1.05);
+        }
+
+        .countdown-number {
+            font-family: var(--font-elegant);
+            font-size: clamp(2rem, 8vw, 3rem);
+            font-weight: 500;
+            color: var(--color-primary);
+            line-height: 1;
+            display: block;
+        }
+
+        .countdown-label {
+            font-family: var(--font-modern);
+            font-size: 0.65rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-secondary);
+            margin-top: 0.5rem;
+        }
+
+        /* ============================================
+           INFORMACIÓN DEL EVENTO
+        ============================================ */
+        .event-card {
+            background: var(--color-white);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .event-title {
+            font-family: var(--font-elegant);
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--color-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .event-details {
+            font-family: var(--font-modern);
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: var(--color-secondary);
+            line-height: 1.8;
+        }
+
+        .event-details strong {
+            color: var(--color-dark);
+            font-weight: 500;
+        }
+
+        .map-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--color-light);
+            color: var(--color-secondary);
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 400;
+            transition: all 0.3s ease;
+        }
+
+        .map-link:hover {
+            background: var(--color-primary);
+            color: var(--color-white);
+        }
+
+        /* ============================================
+           GALERÍA DE FOTOS
+        ============================================ */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item:first-child {
+            grid-column: span 2;
+            aspect-ratio: 16/9;
+        }
+
+        /* Placeholder para fotos */
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-primary) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-white);
+            font-size: 2rem;
+        }
+
+        /* ============================================
+           MENSAJE DE LOS PADRES
+        ============================================ */
+        .message-section {
+            background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-light) 100%);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .message-section::before {
+            content: '"';
+            font-family: var(--font-elegant);
+            font-size: 10rem;
+            color: var(--color-primary);
+            opacity: 0.1;
+            position: absolute;
+            top: -2rem;
+            left: 1rem;
+            line-height: 1;
+        }
+
+        .message-text {
+            font-family: var(--font-elegant);
+            font-size: 1.3rem;
+            font-style: italic;
+            font-weight: 300;
+            color: var(--color-dark);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .message-signature {
+            font-family: var(--font-modern);
+            font-size: 0.85rem;
+            font-weight: 400;
+            color: var(--color-secondary);
+            letter-spacing: 0.1em;
+        }
+
+        /* ============================================
+           DRESS CODE
+        ============================================ */
+        .dresscode {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .color-swatch {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .color-swatch:hover {
+            transform: scale(1.2);
+        }
+
+        .dresscode-note {
+            width: 100%;
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--color-secondary);
+            font-style: italic;
+        }
+
+        /* ============================================
+           BOTÓN DE CONFIRMACIÓN WHATSAPP
+        ============================================ */
+        .confirm-section {
+            text-align: center;
+            padding: 4rem 1.5rem;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            padding: 1.2rem 2.5rem;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: var(--color-white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-family: var(--font-modern);
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            box-shadow: 0 10px 40px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .whatsapp-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .whatsapp-btn:hover::before {
+            left: 100%;
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-btn svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        .confirm-note {
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            color: var(--color-secondary);
+        }
+
+        /* ============================================
+           FOOTER
+        ============================================ */
+        footer {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            background: var(--color-dark);
+            color: var(--color-light);
+        }
+
+        .footer-decoration {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .footer-text {
+            font-family: var(--font-elegant);
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-hashtag {
+            font-family: var(--font-modern);
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            color: var(--color-primary);
+        }
+
+        /* ============================================
+           PARTÍCULAS DECORATIVAS
+        ============================================ */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--color-primary);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 20s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.1;
+            }
+            90% {
+                opacity: 0.1;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* ============================================
+           RESPONSIVE
+        ============================================ */
+        @media (min-width: 768px) {
+            section {
+                padding: 6rem 2rem;
+            }
+
+            .countdown-container {
+                gap: 1.5rem;
+            }
+
+            .countdown-item {
+                padding: 1.5rem 1rem;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .gallery-item:first-child {
+                grid-column: span 3;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Partículas decorativas -->
+    <div class="particles" id="particles"></div>
+
+    <!-- ============================================
+         HERO / PORTADA
+    ============================================ -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-decoration">✦</div>
+            <p class="hero-subtitle">Te invito a celebrar</p>
+            <h1 class="hero-title">Mis XV Años</h1>
+            <p class="hero-name">Amy</p>
+            <p class="hero-date">13 de Junio, 2026</p>
+        </div>
+        <div class="scroll-indicator">
+            <span></span>
+            <p>Desliza</p>
+        </div>
+    </section>
+
+    <!-- ============================================
+         CONTADOR
+    ============================================ -->
+    <section class="countdown-section fade-in">
+        <h2 class="section-title">Faltan</h2>
+        <div class="divider"></div>
+        <div class="countdown-container" id="countdown">
+            <div class="countdown-item">
+                <span class="countdown-number" id="days">00</span>
+                <span class="countdown-label">Días</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="hours">00</span>
+                <span class="countdown-label">Horas</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="minutes">00</span>
+                <span class="countdown-label">Minutos</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-number" id="seconds">00</span>
+                <span class="countdown-label">Segundos</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         INFORMACIÓN DEL EVENTO
+    ============================================ -->
+    <section class="fade-in">
+        <h2 class="section-title">Celebración</h2>
+        <p class="section-subtitle">Los detalles del evento</p>
+        <div class="divider"></div>
+
+        <!-- Ceremonia Religiosa -->
+        <div class="event-card">
+            <div class="event-icon">⛪</div>
+            <h3 class="event-title">Misa</h3>
+            <p class="event-details">
+                <strong>Capilla de Santa Elena</strong><br>
+                C. Benito Juárez Nte. 103, Zona Centro<br>
+                Rioverde, S.L.P<br><br>
+                <strong>4:00 PM</strong>
+            </p>
+            <a href="https://maps.app.goo.gl/123KgiMXxvHnJvVP7" target="_blank" class="map-link">
+                📍 Ver ubicación
+            </a>
+        </div>
+
+        <!-- Recepción -->
+        <div class="event-card">
+            <div class="event-icon">🎉</div>
+            <h3 class="event-title">Recepción</h3>
+            <p class="event-details">
+                <strong>Quinta Robledo</strong><br>
+                Calle de las Acequia, col. Unión<br>
+                Rioverde, S.L.P<br><br>
+                <strong>5:30 PM</strong>
+            </p>
+            <a href="https://maps.app.goo.gl/AUyxsLmzEZhsLtaQA" target="_blank" class="map-link">
+                📍 Ver ubicación
+            </a>
+        </div>
+    </section>
+
+    <!-- ============================================
+         MENSAJE DE LOS PADRES
+    ============================================ -->
+    <section class="fade-in">
+        <div class="message-section">
+            <p class="message-text">
+                Con la bendición de Dios y el amor de nuestra familia,
+                te invitamos a compartir este momento tan especial
+                en la vida de nuestra hija Sofía.
+            </p>
+            <p class="message-signature">
+                — Beatriz Medina & Jose Antonio Castro —<br>
+                <em>Padres de la quinceañera</em>
+            </p>
+        </div>
+    </section>
+
+    <!-- ============================================
+         DRESS CODE
+    ============================================ -->
+    <section class="fade-in">
+        <h2 class="section-title">Código de Vestimenta</h2>
+        <p class="section-subtitle">Formal / Elegante</p>
+        <div class="divider"></div>
+        
+        <div class="dresscode">
+            <div class="color-swatch" style="background: #d4a574;" title="Dorado"></div>
+            <div class="color-swatch" style="background: #2c2c2c;" title="Negro"></div>
+            <div class="color-swatch" style="background: #8b7355;" title="Café"></div>
+            <div class="color-swatch" style="background: #e8d4c4;" title="Beige"></div>
+            <div class="color-swatch" style="background: #f5f5f5;" title="Blanco"></div>
+        </div>
+        <p class="dresscode-note">Sugerimos estos tonos para armonizar con la decoración ✨</p>
+    </section>
+
+    <!-- ============================================
+         GALERÍA DE FOTOS
+    ============================================ -->
+    <section class="fade-in">
+        <h2 class="section-title">Momentos</h2>
+        <p class="section-subtitle">Algunos recuerdos especiales</p>
+        <div class="divider"></div>
+        
+        <div class="gallery">
+            <div class="gallery-item">
+                <div class="photo-placeholder">📸</div>
+                <!-- <img src="foto1.jpg" alt="Foto 1"> -->
+            </div>
+            <div class="gallery-item">
+                <div class="photo-placeholder">📸</div>
+                <!-- <img src="foto2.jpg" alt="Foto 2"> -->
+            </div>
+            <div class="gallery-item">
+                <div class="photo-placeholder">📸</div>
+                <!-- <img src="foto3.jpg" alt="Foto 3"> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         CONFIRMACIÓN DE ASISTENCIA
+    ============================================ -->
+    <section class="confirm-section fade-in">
+        <h2 class="section-title">¿Nos acompañas?</h2>
+        <p class="section-subtitle">Confirma tu asistencia</p>
+        <div class="divider"></div>
+        
+        <a href="https://wa.me/524871100634?text=¡Hola!%20Confirmo%20mi%20asistencia%20a%20los%20XV%20años%20de%20Sofía.%20Mi%20nombre%20es:%20" 
+           class="whatsapp-btn" 
+           target="_blank">
+            <svg viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+            Confirmar Asistencia
+        </a>
+        
+        <p class="confirm-note">
+            Por favor confirma antes del 30 de Mayo para ayudarnos con la organización. ¡Gracias!
+        </p>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+    ============================================ -->
+    <footer>
+        <div class="footer-decoration">✦</div>
+        <p class="footer-text">¡Te esperamos!</p>
+        <p class="footer-hashtag">#LosXVdeSofía</p>
+    </footer>
+
+    <!-- ============================================
+         JAVASCRIPT
+    ============================================ -->
+    <script>
+        // ============================================
+        // CONTADOR EN TIEMPO REAL
+        // ============================================
+        
+        // ⚠️ IMPORTANTE: Cambia esta fecha por la fecha de tu evento
+        const eventDate = new Date('2026-06-13T17:00:00').getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = eventDate - now;
+
+            if (distance < 0) {
+                document.getElementById('days').textContent = '🎉';
+                document.getElementById('hours').textContent = '¡Hoy';
+                document.getElementById('minutes').textContent = 'es';
+                document.getElementById('seconds').textContent = 'el día!';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+
+        // Actualizar cada segundo
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // ============================================
+        // ANIMACIONES AL HACER SCROLL
+        // ============================================
+        
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ============================================
+        // PARTÍCULAS DECORATIVAS
+        // ============================================
+        
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 15;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Posición aleatoria
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                
+                // Tamaño aleatorio
+                const size = 5 + Math.random() * 10;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                container.appendChild(particle);
+            }
+        }
+
+        createParticles();
+
+        // ============================================
+        // EFECTO PARALLAX SUAVE EN HERO
+        // ============================================
+        
+        window.addEventListener('scroll', () => {
+            const hero = document.querySelector('.hero-content');
+            const scrolled = window.pageYOffset;
+            
+            if (scrolled < window.innerHeight) {
+                hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+                hero.style.opacity = 1 - (scrolled / window.innerHeight);
+            }
+        });
+    </script>
+
+</body>
+</html>
